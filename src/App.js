@@ -33,6 +33,7 @@ export default function App() {
       <Authenticator components={authComponents}>
         {({ signOut, user }) => 
           <View>
+            {window.scrollTo(0,0)}
             <Card>
               <img src={logo} className="App-logo" style={{"--logo-animation-duration": `${logoAnimationDuration}s`}} alt="logo" onClick={() => setLogoAnimationDuration(logoAnimationDuration <= 0.5 ? 20 : logoAnimationDuration / 2)} />
               <Heading level={2}>Hello{!user.username.startsWith("signinwithapple") ? ` ${user.username}` : ''}!</Heading>
