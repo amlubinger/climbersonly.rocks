@@ -1,0 +1,4 @@
+- Tailwind CSS
+- Usernames for SIWA users
+- Navigation
+- Finish tutorial w/ API & data
