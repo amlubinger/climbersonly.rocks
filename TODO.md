@@ -1,4 +1,5 @@
 - Tailwind CSS
+- FIX SIGN IN WITH APPLE - localhost issue
 - Usernames for SIWA users
 - Navigation
 - Finish tutorial w/ API & data
