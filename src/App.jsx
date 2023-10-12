@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import logo from "./ClimbersOnly.svg";
 import "./App.css";
 import "@aws-amplify/ui-react/styles.css";
 import {
@@ -14,6 +14,7 @@ import { useState } from "react";
 
 export default function App(props) {
   const [logoAnimationDuration, setLogoAnimationDuration] = useState(20);
+  const [logoAnimationEnabled, setLogoAnimationEnabled] = useState(false);
 
   const { tokens } = useTheme();
 
@@ -36,7 +37,7 @@ export default function App(props) {
           <View>
             {window.scrollTo(0,0)}
             <Card>
-              <img src={logo} className="App-logo" style={{"--logo-animation-duration": `${logoAnimationDuration}s`}} alt="logo" onClick={() => setLogoAnimationDuration(logoAnimationDuration <= 0.5 ? 20 : logoAnimationDuration / 2)} />
+              <img src={logo} className="App-logo" style={{"--logo-animation-duration": `${logoAnimationEnabled ? logoAnimationDuration : 0}s`}} alt="logo" onClick={() => {setLogoAnimationEnabled(true); setLogoAnimationDuration(logoAnimationDuration <= 0.5 ? 20 : logoAnimationDuration / 2);}} />
               <Heading level={2}>Hello{!user.username.startsWith("signinwithapple") ? ` ${user.username}` : ''}!</Heading>
               <Heading level={1}>Welcome to Climbers Only</Heading>
               <Heading level={3} marginTop="relative.medium">Coming soon...</Heading>
