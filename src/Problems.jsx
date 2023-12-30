@@ -16,7 +16,8 @@ import {
 } from "./graphql/mutations";
 
 export default function (props) {
-  const [problems, setProblems] = useState([]);
+  const [myProblems, setMyProblems] = useState([]);
+  const [otherProblems, setOtherProblems] = useState([]);
 
   useEffect(() => {
     fetchProblems();
@@ -25,7 +26,14 @@ export default function (props) {
   async function fetchProblems() {
     const apiData = await API.graphql({ query: listProblems });
     const problemsFromAPI = apiData.data.listProblems.items;
-    setProblems(problemsFromAPI);
+    console.log(props.username);
+    const myProblemsFromAPI = [];
+    const otherProblemsFromAPI = [];
+    problemsFromAPI.map((problem) => {
+      problem.owner === props.username ? myProblemsFromAPI.push(problem) : otherProblemsFromAPI.push(problem);
+    });
+    setMyProblems(myProblemsFromAPI);
+    setOtherProblems(otherProblemsFromAPI);
   }
 
   async function createProblem(event) {
@@ -56,11 +64,11 @@ export default function (props) {
   return (
     <View className="problems">
       <Heading level={2}>My Problems</Heading>
-      {problems.length ?
+      {myProblems.length ?
         <View margin="3rem 0">
-          {problems.map((problem) => (
+          {myProblems.map((problem) => (
             <Flex
-              key={problem.id || problem.name}
+              key={problem.id || problem.title}
               direction="row"
               justifyContent="center"
               alignItems="center"
@@ -112,6 +120,29 @@ export default function (props) {
           </Button>
         </Flex>
       </View>
+      <Heading level={2}>Other Problems</Heading>
+      {otherProblems.length ?
+        <View margin="3rem 0">
+          {otherProblems.map((problem) => (
+            <Flex
+              key={problem.id || problem.title}
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Text as="strong" fontWeight={700}>
+                {problem.title}
+              </Text>
+              <Text as="span">{problem.description}</Text>
+              <Text as="span">{problem.grade}</Text>
+              <Text as="span">{problem.owner}</Text>
+            </Flex>
+          ))
+          }
+        </View>
+        :
+        <Heading level={5} marginBottom="relative.medium">None</Heading>
+      }
     </View>
   );
 }

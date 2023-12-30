@@ -41,7 +41,7 @@ export default function App(props) {
               <Heading level={2}>Hello{!user.username.startsWith("signinwithapple") ? ` ${user.username}` : ''}!</Heading>
               <Heading level={1}>Welcome to Climbers Only</Heading>
               <Heading level={3} marginTop="relative.medium">Coming soon...</Heading>
-              <Problems />
+              <Problems username={user.username}/>
               <div>
                 <button
                   className="mx-3 mt-6 px-1 py-1 h-10 w-10 flex-none items-center justify-center rounded-md bg-transparent shadow ring-1 ring-gray-400 focus:outline-none dark:text-white"
