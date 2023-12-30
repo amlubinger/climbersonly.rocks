@@ -14,6 +14,9 @@
     "categories": {
       "auth": {
         "climbersonly54008bca": {}
+      },
+      "api": {
+        "climbdata": {}
       }
     }
   }
