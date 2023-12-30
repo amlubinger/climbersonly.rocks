@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "climbdata",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authclimbersonly54008bca",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

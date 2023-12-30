@@ -1,0 +1,14 @@
+type Problem
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, update, read, delete] }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  title: String!
+  description: String
+  grade: String
+  status: String
+}
