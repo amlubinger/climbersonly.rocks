@@ -14,6 +14,7 @@ import {
   createProblem as createProblemMutation,
   deleteProblem as deleteProblemMutation,
 } from "./graphql/mutations";
+import CollapseableText from "./CollapseableText";
 
 export default function (props) {
   const [myProblems, setMyProblems] = useState([]);
@@ -26,7 +27,6 @@ export default function (props) {
   async function fetchProblems() {
     const apiData = await API.graphql({ query: listProblems });
     const problemsFromAPI = apiData.data.listProblems.items;
-    console.log(props.username);
     const myProblemsFromAPI = [];
     const otherProblemsFromAPI = [];
     problemsFromAPI.map((problem) => {
@@ -130,11 +130,9 @@ export default function (props) {
               justifyContent="center"
               alignItems="center"
             >
-              <Text as="strong" fontWeight={700}>
-                {problem.title}
-              </Text>
-              <Text as="span">{problem.description}</Text>
-              <Text as="span">{problem.grade}</Text>
+              <CollapseableText text={problem.title} weight="700" as="strong"/>
+              <CollapseableText text={problem.description} as="span"/>
+              <CollapseableText text={problem.grade} as="span"/>
               <Text as="span">{problem.owner}</Text>
             </Flex>
           ))
@@ -145,4 +143,4 @@ export default function (props) {
       }
     </View>
   );
-}
+};
