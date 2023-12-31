@@ -53,8 +53,8 @@ export default function (props) {
   }
 
   async function deleteProblem({ id }) {
-    const newProblems = problems.filter((problem) => problem.id !== id);
-    setProblems(newProblems);
+    const newProblems = myProblems.filter((problem) => problem.id !== id);
+    setMyProblems(newProblems);
     await API.graphql({
       query: deleteProblemMutation,
       variables: { input: { id } },
